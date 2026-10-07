@@ -4,6 +4,7 @@ import Nav from './components/Nav'
 import Header from './components/Header'
 import Article from './components/Article'
 import Hero from './components/Hero'
+import Aside from './components/Aside'
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Header/>
       <Article/>
       <Hero/>
+      <Aside/>
     </>
   )
 }
