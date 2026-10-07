@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, ShoppingBag, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ShoppingBag, Heart, ChevronLeft, ChevronRight, Search, X, Sparkles } from 'lucide-react';
 
 // Swiper kutubxonasi va modullari
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -21,6 +21,9 @@ import pic7 from "../../public/Images/pic8.png";
 
 const Article = () => {
   const [liked, setLiked] = useState({});
+  const [showMenu, setShowMenu] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const products = [
     {
@@ -29,7 +32,8 @@ const Article = () => {
       description: "Rich caramel swirl with sea salt crunch",
       price: "Rs 460",
       image: pic,
-      badge: "Popular"
+      badge: "Popular",
+      category: "Caramel"
     },
     {
       id: 2,
@@ -37,7 +41,8 @@ const Article = () => {
       description: "Fresh strawberry puree infused with rosewater",
       price: "Rs 440",
       image: pic1,
-      badge: "Fresh"
+      badge: "Fresh",
+      category: "Fruity"
     },
     {
       id: 3,
@@ -45,7 +50,8 @@ const Article = () => {
       description: "Exotic mango with a subtle chili kick",
       price: "Rs 400",
       image: pic2,
-      badge: "Trending"
+      badge: "Trending",
+      category: "Fruity"
     },
     {
       id: 4,
@@ -53,7 +59,8 @@ const Article = () => {
       description: "70% single-origin dark cocoa fudge",
       price: "Rs 500",
       image: pic3,
-      badge: "Classic"
+      badge: "Classic",
+      category: "Chocolate"
     },
     {
       id: 5,
@@ -61,7 +68,8 @@ const Article = () => {
       description: "Pure Madagascar vanilla with crushed pods",
       price: "Rs 420",
       image: pic4,
-      badge: "Best Seller"
+      badge: "Best Seller",
+      category: "Classic"
     },
     {
       id: 6,
@@ -69,7 +77,8 @@ const Article = () => {
       description: "Roasted Sicilian pistachios with white cream",
       price: "Rs 480",
       image: pic5,
-      badge: "Artisan"
+      badge: "Artisan",
+      category: "Nuts"
     },
     {
       id: 7,
@@ -77,7 +86,8 @@ const Article = () => {
       description: "Dairy-free wild berry & mint explosion",
       price: "Rs 390",
       image: pic6,
-      badge: "Vegan"
+      badge: "Vegan",
+      category: "Fruity"
     },
     {
       id: 8,
@@ -85,16 +95,26 @@ const Article = () => {
       description: "Toasted hazelnut paste with dark chocolate",
       price: "Rs 520",
       image: pic7,
-      badge: "Limited"
+      badge: "Limited",
+      category: "Nuts"
     }
   ];
+
+  const categories = ['All', 'Fruity', 'Chocolate', 'Caramel', 'Nuts', 'Classic'];
 
   const toggleLike = (id) => {
     setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
+  const filteredProducts = products.filter((item) => {
+    const matchesCategory = selectedCategory === 'All' || item.category === selectedCategory;
+    const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          item.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
   return (
-    <section className="w-full bg-[#FAF5EF] py-16 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+    <section className="w-full bg-[#FAF5EF] py-16 px-4 sm:px-6 lg:px-8 transition-colors duration-300 relative">
       <div className="max-w-7xl mx-auto relative group/swiper">
         
         {/* Header Title Section */}
@@ -217,13 +237,132 @@ const Article = () => {
         {/* Custom Pagination Indicator */}
         <div className="swiper-custom-pagination flex justify-center gap-1.5 !-bottom-2" />
 
-        {/* Bottom Explore Link */}
-        <div className="mt-8 text-center">
-          <button className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#4A2010] hover:text-[#E06D53] transition-colors group">
-            <span>Explore all signature flavors</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+        {/* Bottom Explore Link / Menu Toggle Button */}
+        <div className="mt-10 text-center">
+          <button
+            onClick={() => setShowMenu((prev) => !prev)}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-rose-200 text-xs sm:text-sm font-semibold text-[#4A2010] hover:bg-[#2B1107] hover:text-white hover:border-[#2B1107] transition-all duration-300 shadow-sm active:scale-95 group"
+          >
+            <span>{showMenu ? "Hide full menu" : "Explore all signature flavors"}</span>
+            <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${showMenu ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
           </button>
         </div>
+
+        {/* Full Interactive Menu Section */}
+        {showMenu && (
+          <div className="mt-12 pt-10 border-t border-rose-200/60 animate-fadeIn">
+            
+            {/* Menu Header & Search Bar */}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+              <div>
+                <div className="flex items-center gap-2 text-[#E06D53] font-semibold text-xs uppercase tracking-widest">
+                  <Sparkles className="w-4 h-4" />
+                  <span>Full Flavor Collection</span>
+                </div>
+                <h3 className="text-2xl font-serif font-bold text-[#4A2010] mt-1">
+                  Discover All Flavors
+                </h3>
+              </div>
+
+              {/* Search Box */}
+              <div className="relative w-full md:w-72">
+                <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" />
+                <input
+                  type="text"
+                  placeholder="Search flavor..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-9 pr-8 py-2 bg-white rounded-full border border-stone-200 text-xs text-[#4A2010] focus:outline-none focus:border-[#E06D53] transition-colors"
+                />
+                {searchQuery && (
+                  <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600">
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Category Filter Pills */}
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-8">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+                    selectedCategory === cat
+                      ? 'bg-[#E06D53] text-white shadow-md scale-105'
+                      : 'bg-white text-[#7A6256] hover:bg-rose-50 border border-stone-200'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Grid display of all items */}
+            {filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {filteredProducts.map((item) => (
+                  <div
+                    key={item.id}
+                    className="group relative bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl border border-orange-100/60 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between overflow-hidden"
+                  >
+                    <div className="flex items-center justify-between z-10">
+                      <span className="bg-orange-50 text-[#C55A3B] text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                        {item.badge}
+                      </span>
+                      <button
+                        onClick={() => toggleLike(item.id)}
+                        className="p-1.5 rounded-full bg-stone-50 hover:bg-rose-50 text-stone-400 hover:text-rose-500 transition-colors"
+                      >
+                        <Heart
+                          className={`w-4 h-4 transition-transform active:scale-125 ${
+                            liked[item.id] ? "fill-rose-500 text-rose-500" : ""
+                          }`}
+                        />
+                      </button>
+                    </div>
+
+                    <div className="relative w-full h-44 my-3 flex items-center justify-center overflow-hidden">
+                      <div className="absolute w-28 h-28 bg-orange-100/40 rounded-full blur-2xl group-hover:bg-rose-100/60 transition-all duration-500" />
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-auto h-full max-h-40 object-contain filter drop-shadow-md transition-all duration-500 ease-out transform group-hover:scale-110 group-hover:-rotate-6"
+                      />
+                    </div>
+
+                    <div className="space-y-1 text-center sm:text-left">
+                      <h4 className="font-serif font-bold text-base text-[#4A2010] group-hover:text-[#E06D53] transition-colors">
+                        {item.title}
+                      </h4>
+                      <p className="text-xs text-[#7A6256] line-clamp-2 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+
+                    <div className="pt-3 mt-3 border-t border-stone-100 flex items-center justify-between">
+                      <div>
+                        <span className="text-[10px] uppercase text-stone-400 block font-medium">Price</span>
+                        <span className="font-bold text-sm text-[#4A2010]">{item.price}</span>
+                      </div>
+
+                      <button className="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#2B1107] hover:bg-[#E06D53] text-white text-xs font-medium rounded-xl shadow-sm transition-all duration-300 group/btn active:scale-95">
+                        <span>Order</span>
+                        <ShoppingBag className="w-3 h-3 transition-transform group-hover/btn:scale-110" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12 bg-white rounded-2xl border border-stone-200">
+                <p className="text-sm text-[#7A6256]">Hech qanday muzqaymoq topilmadi.</p>
+              </div>
+            )}
+
+          </div>
+        )}
 
       </div>
     </section>
