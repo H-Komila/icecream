@@ -5,9 +5,10 @@ import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-import bg3 from "../../public/Images/bg3.png";
-import card from "../../public/Images/card.png";
-import card1 from "../../public/Images/card1.png";
+// public papkasidan to'g'ridan-to'g'ri chaqirish:
+import bg3 from "/Images/bg3.png";
+import card from "/Images/card.png";
+import card1 from "/Images/card1.png";
 
 const images = [bg3, card, card1];
 
@@ -43,7 +44,7 @@ const Section = () => {
                 <SwiperSlide key={index}>
                   <img
                     src={image}
-                    alt={`Ice cream \${index + 1}`}
+                    alt={`Ice cream ${index + 1}`}
                     className="h-full w-full object-cover"
                   />
                 </SwiperSlide>
