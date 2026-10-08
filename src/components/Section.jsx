@@ -13,8 +13,7 @@ import card1 from "/Images/card1.png";
 const images = [bg3, card, card1];
 
 const stats = [
-  { value: "6", label: "years scooping" },
-  { value: "60+", label: "flavors invented" },
+  { value: "6", label: "years scoopinaented" },
   { value: "0", label: "artificial flavoring" },
 ];
 

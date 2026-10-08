@@ -1,5 +1,6 @@
 import React from 'react';
-import { Instagram, Facebook, Globe } from 'lucide-react';
+import { Globe } from "lucide-react";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -22,7 +23,7 @@ const Footer = () => {
               aria-label="Instagram"
               className="p-2 rounded-full border border-white/20 text-pink-200 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-200"
             >
-              <Instagram size={16} />
+              <FaInstagram size={16} />
             </a>
             <a
               href="https://facebook.com"
@@ -31,7 +32,7 @@ const Footer = () => {
               aria-label="Facebook"
               className="p-2 rounded-full border border-white/20 text-pink-200 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-200"
             >
-              <Facebook size={16} />
+              <FaFacebook size={16} />
             </a>
             <a
               href="#website"
