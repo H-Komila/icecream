@@ -14,7 +14,7 @@ import pic18 from "../../public/Images/pic18.png";
 import pic19 from "../../public/Images/pic19.png";
 import pic20 from "../../public/Images/pic20.png";
 
-const Aside = () => {
+const Aside = ({ addToCart }) => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [showFullMenu, setShowFullMenu] = useState(false);
 
@@ -50,6 +50,12 @@ const Aside = () => {
   const visibleProducts = showFullMenu 
     ? filteredProducts 
     : filteredProducts.slice(0, 3);
+
+  const handleAddToCart = (product) => {
+    if (addToCart) {
+      addToCart(product);
+    }
+  };
 
   return (
     <section className="w-full bg-[#FAF5EF] pb-16 px-4 sm:px-6 lg:px-8">
@@ -108,6 +114,7 @@ const Aside = () => {
                 </span>
 
                 <button 
+                  onClick={() => handleAddToCart(product)}
                   className="w-8 h-8 rounded-full bg-[#2B1107] text-white flex items-center justify-center hover:bg-[#E06D53] transition-all duration-300 active:scale-90 shadow-sm"
                   title="Savatga qo'shish"
                 >
@@ -118,7 +125,7 @@ const Aside = () => {
           ))}
         </div>
 
-        {/* Qolgan 9 ta kartochkani ochish va yopish tugmasi */}
+        {/* Qolgan kartochkani ochish va yopish tugmasi */}
         {filteredProducts.length > 3 && (
           <div className="mt-12 text-center">
             <button
