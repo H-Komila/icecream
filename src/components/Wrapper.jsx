@@ -30,7 +30,6 @@ const Wrapper = () => {
   const [favorites, setFavorites] = useState([]);
   const [activeItem, setActiveItem] = useState(null);
   
-  // Savat (Cart) State-lari
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -43,7 +42,6 @@ const Wrapper = () => {
     );
   };
 
-  // Savatga mahsulot qo'shish
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
@@ -56,7 +54,6 @@ const Wrapper = () => {
     });
   };
 
-  // Savatdagi mahsulot miqdorini o'zgartirish
   const updateQuantity = (id, delta) => {
     setCart((prevCart) =>
       prevCart
@@ -71,12 +68,10 @@ const Wrapper = () => {
     );
   };
 
-  // Savatdan o'chirish
   const removeFromCart = (id) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
-  // Savatdagi umumiy summa va soni
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -84,21 +79,23 @@ const Wrapper = () => {
     ? items
     : items.filter((item) => item.category === selectedCategory);
 
+  const totalPages = Math.ceil(initialItems.length / 4);
+
   const nextPage = () => {
-    setMobilePage((prev) => (prev + 1) % Math.ceil(initialItems.length / 4));
+    setMobilePage((prev) => (prev + 1) % totalPages);
   };
 
   const prevPage = () => {
-    setMobilePage((prev) => (prev - 1 + Math.ceil(initialItems.length / 4)) % Math.ceil(initialItems.length / 4));
+    setMobilePage((prev) => (prev - 1 + totalPages) % totalPages);
   };
 
   return (
-    <section id='gallery' 
+    <section 
+      id="gallery" 
       style={{ backgroundImage: `url('/Images/bg4.png')` }} 
       className="bg-cover bg-center bg-no-repeat py-12 px-4 sm:px-8 font-sans relative overflow-hidden transition-all duration-500"
     >
       <div className="absolute inset-0 bg-[#fceee9]/85 backdrop-blur-[2px] pointer-events-none" />
-
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#f7d6cd] rounded-full blur-3xl opacity-60 pointer-events-none" />
       <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#f3c8bd] rounded-full blur-3xl opacity-50 pointer-events-none" />
 
@@ -130,7 +127,6 @@ const Wrapper = () => {
               </motion.div>
             )}
 
-            {/* Savat Tugmasi */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -196,6 +192,7 @@ const Wrapper = () => {
                         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: index * 0.2 }}
                         src={item.img}
                         alt={item.title}
+                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
                         className="max-w-full max-h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
@@ -261,11 +258,11 @@ const Wrapper = () => {
                   <ChevronLeft size={18} />
                 </button>
                 <span className="text-xs text-[#8c5258] font-bold tracking-wider">
-                  {mobilePage + 1} / {Math.ceil(initialItems.length / 4)}
+                  {mobilePage + 1} / {totalPages}
                 </span>
                 <button
                   onClick={nextPage}
-                  className="p-2.5 rounded-full bg-white text-[#5c1d24] shadow-md hover:bg-[#5c1d24] hover:text-white transition-colors"
+                  className="p-2.5 rounded-full bg-white text-[#5c1d24] shadow-md hover:bg-[#5c1d24] hover:text-[#5c1d24] transition-colors"
                 >
                   <ChevronRight size={18} />
                 </button>
@@ -329,7 +326,11 @@ const Wrapper = () => {
                       </button>
 
                       <div className="w-28 h-28 flex items-center justify-center my-3">
-                        <img src={item.img} alt={item.title} className="max-w-full max-h-full object-contain drop-shadow-md" />
+                        <img 
+                          src={item.img} 
+                          alt={item.title} 
+                          className="max-w-full max-h-full object-contain drop-shadow-md" 
+                        />
                       </div>
 
                       <div className="w-full text-center">
