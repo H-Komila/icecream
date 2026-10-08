@@ -92,7 +92,7 @@ const Header = () => {
   const activeSlide = slides[currentSlide];
 
   return (
-    <header 
+    <header id='flavors'
       className="relative w-full min-h-[calc(100vh-80px)] bg-cover bg-center bg-no-repeat overflow-hidden py-10 lg:py-16 flex items-center"
       style={{ backgroundImage: `url(${bg})` }}
     >

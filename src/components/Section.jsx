@@ -55,7 +55,6 @@ const Section = () => {
 
   return (
     <section
-      id="story"
       className="w-full bg-[#621543] bg-[radial-gradient(circle_at_95%_25%,rgba(140,50,70,0.55),transparent_35%)] py-12 text-white md:py-20"
     >
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 sm:px-10 lg:flex-row lg:gap-12 lg:px-14">

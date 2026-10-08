@@ -93,7 +93,7 @@ const Wrapper = () => {
   };
 
   return (
-    <section 
+    <section id='gallery' 
       style={{ backgroundImage: `url('/Images/bg4.png')` }} 
       className="bg-cover bg-center bg-no-repeat py-12 px-4 sm:px-8 font-sans relative overflow-hidden transition-all duration-500"
     >

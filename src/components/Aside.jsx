@@ -58,7 +58,7 @@ const Aside = ({ addToCart }) => {
   };
 
   return (
-    <section className="w-full bg-[#FAF5EF] pb-16 px-4 sm:px-6 lg:px-8">
+    <section id='story' className="w-full bg-[#FAF5EF] pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         
         {/* Kategoriya menyu tugmalari */}
@@ -79,7 +79,7 @@ const Aside = ({ addToCart }) => {
         </div>
 
         {/* Grid mahsulotlar kartasi */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div id='story' className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {visibleProducts.map((product) => (
             <div
               key={product.id}
