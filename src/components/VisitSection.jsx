@@ -3,7 +3,7 @@ import { MapPin, Clock, Phone } from 'lucide-react';
 
 const VisitSection = () => {
   return (
-    <section className="bg-[#fceee9] py-16 px-4 sm:px-8 font-sans relative overflow-hidden">
+    <section id='visit' className="bg-[#fceee9] py-16 px-4 sm:px-8 font-sans relative overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
         
         {/* Chap tarafdagi matnlar va ma'lumotlar */}
