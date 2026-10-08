@@ -2,41 +2,23 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Grid, ChevronLeft, ChevronRight, Heart, ShoppingBag, Star, Sparkles } from 'lucide-react';
 
-import a from "../../public/Images/a.png";
-import b from "../../public/Images/b.png";
-import c from "../../public/Images/c.png";
-import d from "../../public/Images/d.png";
-import e from "../../public/Images/e.png";
-import f from "../../public/Images/f.png";
-import g from "../../public/Images/g.png";
-import h from "../../public/Images/h.png";
-import i from "../../public/Images/i.png";
-import j from "../../public/Images/j.png";
-import k from "../../public/Images/k.png";
-import l from "../../public/Images/l.png";
-import m from "../../public/Images/m.png";
-import n from "../../public/Images/n.png";
-import o from "../../public/Images/o.png";
-import p from "../../public/Images/p.png";
-import bg4 from "../../public/Images/bg4.png";
-
 const items = [
-  { id: 1, title: "Double Chocolate Fudge", img: a, category: "Chocolate", price: "$4.50", rating: 4.9, badge: "Bestseller", desc: "Rich Belgian dark chocolate churned with fudge swirls." },
-  { id: 2, title: "Cherried Up Forest", img: b, category: "Fruity", price: "$4.80", rating: 4.8, badge: "New", desc: "Wild sour cherries folded into creamy vanilla bean." },
-  { id: 3, title: "Strawberry Trio", img: c, category: "Fruity", price: "$4.20", rating: 4.7, desc: "Fresh organic strawberries with a splash of sweet cream." },
-  { id: 4, title: "Blueberry Blast", img: d, category: "Fruity", price: "$4.30", rating: 4.6, desc: "Wild mountain blueberries with a tangy citrus swirl." },
-  { id: 5, title: "Mango Masala", img: e, category: "Fruity", price: "$4.60", rating: 4.9, badge: "Chef's Pick", desc: "Alphonso mangoes blended with a subtle touch of spice." },
-  { id: 6, title: "Mint Choc Chip", img: f, category: "Chocolate", price: "$4.10", rating: 4.8, desc: "Cool peppermint cream loaded with dark chocolate flakes." },
-  { id: 7, title: "Pistachio Crunch", img: g, category: "Nutty", price: "$5.00", rating: 4.9, badge: "Premium", desc: "Roasted Sicilian pistachios with caramelized nut crunch." },
-  { id: 8, title: "Salted Caramel Drizzle", img: h, category: "Classic", price: "$4.70", rating: 4.8, desc: "Slow-cooked sea salt caramel blended to perfection." },
-  { id: 9, title: "Vanilla Special", img: i, category: "Classic", price: "$3.90", rating: 4.5, desc: "Madagascar bourbon vanilla beans infused cream." },
-  { id: 10, title: "Berry Delight", img: j, category: "Fruity", price: "$4.40", rating: 4.7, desc: "Mixed forest berries with a ribbon of sweet raspberry." },
-  { id: 11, title: "Nutty Caramel", img: k, category: "Nutty", price: "$4.90", rating: 4.8, desc: "Crunchy pecans and buttery caramel in a velvet base." },
-  { id: 12, title: "Choco Swirl", img: l, category: "Chocolate", price: "$4.50", rating: 4.6, desc: "Milk chocolate gelatos with dark fudge ribbons." },
-  { id: 13, title: "Tropical Splash", img: m, category: "Fruity", price: "$4.60", rating: 4.7, desc: "Passion fruit, pineapple, and coconut milk blend." },
-  { id: 14, title: "Cookie Cream", img: n, category: "Classic", price: "$4.30", rating: 4.9, badge: "Popular", desc: "Crushed chocolate cookies immersed in vanilla." },
-  { id: 15, title: "Peach Perfection", img: o, category: "Fruity", price: "$4.20", rating: 4.6, desc: "Ripe summer peaches blended into velvety cream." },
-  { id: 16, title: "Classic Crunch", img: p, category: "Classic", price: "$4.00", rating: 4.5, desc: "Traditional crisp waffle cone bits with honeycomb." },
+  { id: 1, title: "Double Chocolate Fudge", img: "/Images/a.png", category: "Chocolate", price: "$4.50", rating: 4.9, badge: "Bestseller", desc: "Rich Belgian dark chocolate churned with fudge swirls." },
+  { id: 2, title: "Cherried Up Forest", img: "/Images/b.png", category: "Fruity", price: "$4.80", rating: 4.8, badge: "New", desc: "Wild sour cherries folded into creamy vanilla bean." },
+  { id: 3, title: "Strawberry Trio", img: "/Images/c.png", category: "Fruity", price: "$4.20", rating: 4.7, desc: "Fresh organic strawberries with a splash of sweet cream." },
+  { id: 4, title: "Blueberry Blast", img: "/Images/d.png", category: "Fruity", price: "$4.30", rating: 4.6, desc: "Wild mountain blueberries with a tangy citrus swirl." },
+  { id: 5, title: "Mango Masala", img: "/Images/e.png", category: "Fruity", price: "$4.60", rating: 4.9, badge: "Chef's Pick", desc: "Alphonso mangoes blended with a subtle touch of spice." },
+  { id: 6, title: "Mint Choc Chip", img: "/Images/f.png", category: "Chocolate", price: "$4.10", rating: 4.8, desc: "Cool peppermint cream loaded with dark chocolate flakes." },
+  { id: 7, title: "Pistachio Crunch", img: "/Images/g.png", category: "Nutty", price: "$5.00", rating: 4.9, badge: "Premium", desc: "Roasted Sicilian pistachios with caramelized nut crunch." },
+  { id: 8, title: "Salted Caramel Drizzle", img: "/Images/h.png", category: "Classic", price: "$4.70", rating: 4.8, desc: "Slow-cooked sea salt caramel blended to perfection." },
+  { id: 9, title: "Vanilla Special", img: "/Images/i.png", category: "Classic", price: "$3.90", rating: 4.5, desc: "Madagascar bourbon vanilla beans infused cream." },
+  { id: 10, title: "Berry Delight", img: "/Images/j.png", category: "Fruity", price: "$4.40", rating: 4.7, desc: "Mixed forest berries with a ribbon of sweet raspberry." },
+  { id: 11, title: "Nutty Caramel", img: "/Images/k.png", category: "Nutty", price: "$4.90", rating: 4.8, desc: "Crunchy pecans and buttery caramel in a velvet base." },
+  { id: 12, title: "Choco Swirl", img: "/Images/l.png", category: "Chocolate", price: "$4.50", rating: 4.6, desc: "Milk chocolate gelatos with dark fudge ribbons." },
+  { id: 13, title: "Tropical Splash", img: "/Images/m.png", category: "Fruity", price: "$4.60", rating: 4.7, desc: "Passion fruit, pineapple, and coconut milk blend." },
+  { id: 14, title: "Cookie Cream", img: "/Images/n.png", category: "Classic", price: "$4.30", rating: 4.9, badge: "Popular", desc: "Crushed chocolate cookies immersed in vanilla." },
+  { id: 15, title: "Peach Perfection", img: "/Images/o.png", category: "Fruity", price: "$4.20", rating: 4.6, desc: "Ripe summer peaches blended into velvety cream." },
+  { id: 16, title: "Classic Crunch", img: "/Images/p.png", category: "Classic", price: "$4.00", rating: 4.5, desc: "Traditional crisp waffle cone bits with honeycomb." },
 ];
 
 const categories = ["All", "Fruity", "Chocolate", "Nutty", "Classic"];
@@ -71,7 +53,7 @@ const Wrapper = () => {
 
   return (
     <section 
-      style={{ backgroundImage: `url(${bg4})` }} 
+      style={{ backgroundImage: `url('/Images/bg4.png')` }} 
       className="bg-cover bg-center bg-no-repeat py-12 px-4 sm:px-8 font-sans relative overflow-hidden transition-all duration-500"
     >
       {/* Background Overlay */}
@@ -121,7 +103,7 @@ const Wrapper = () => {
           </div>
         </div>
 
-        {/* Desktop Grid Display (Asosiy 8 ta yoki To'liq menyu) */}
+        {/* Desktop Grid Display */}
         {!showFullMenu ? (
           <>
             <div className="hidden md:grid grid-cols-4 gap-5">
@@ -346,7 +328,7 @@ const Wrapper = () => {
               </div>
 
               <h3 className="text-xl font-extrabold text-[#5c1d24]">{activeItem.title}</h3>
-              <p className="text-xs text-gray-500 mt-2 px-4 leading-relaxed">{activeItem.desc}</p>
+              <p className="text-xs text-[#8c5258] mt-2 px-4 leading-relaxed">{activeItem.desc}</p>
 
               <div className="text-2xl font-extrabold text-[#5c1d24] my-4">{activeItem.price}</div>
 
